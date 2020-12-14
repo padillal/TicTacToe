@@ -1,28 +1,28 @@
 //creating a gameBoard using a module
-const gameBoard = (() => {
+// const gameBoard = (() => {
   //board is generated as an array
-  const generateBoard = [];
+  // const generateBoard = [];
 
   //board is returned
-  return{generateBoard};
-})();
+  // return{generateBoard};
+// })();
 
 //creating displayController using a module
-const displayController = (() => {
+// const displayController = (() => {
   //creating turn for players
-  let turn;
+  // let turn;
 
-  return{turn};
-})();
+  // return{turn};
+// })();
 
-const Player = function(name, mark){
-  let name = name;
-  let mark = mark;
-  let score = 0;
+// const Player = function(name, mark){
+  // let name = name;
+  // let mark = mark;
+  // let score = 0;
 
-  const incScore = () => {
-    score += 1;
-  }
+  // const incScore = () => {
+    // score += 1;
+  // }
 
-  return {name, mark, incScore};
-}
+  // return {name, mark, incScore};
+// }
