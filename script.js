@@ -17,6 +17,7 @@ const GameBoard = (() => {
       $("#c"+i).click(function() {
         console.log("You clicked on cell: " + i);
         console.log("Current cell value is: " + board[i]);
+        GameLogic.markCell(i);
       });
     }
   }
@@ -24,8 +25,42 @@ const GameBoard = (() => {
   return {generateBoard,attachCellListeners};
 })();
 
+//BEGIN Player for player information
+const Player = (name,mark) => {
+  const getName = () => {
+    return name;
+  }
+  const getMark = () => {
+    return mark;
+  }
+  return{getName,getMark};
+}
+
+
 // BEGIN GameLogic for all game rules
-// const GameLogic = (() => {})();
+const GameLogic = (() => {
+  const player1 = Player("Player 1", "X");
+  const player2 = Player("Player 2", "O");
+
+  let turn = 0;
+
+  const markCell = (cell) => {
+    console.log("Marking cell: " + cell);
+    let move = turn;
+    if(turn == 0){
+      player1.getMark();
+      console.log("New cell value is now: " + player1.getMark());
+      turn++;
+    }
+    else{
+      player2.getMark();
+      console.log("New cell value is now: " + player2.getMark());
+      turn--;
+    }
+  }
+
+  return{markCell};
+})();
 
 // BEGIN DisplayController for all display needs
 const DisplayController = (() => {
