@@ -8,9 +8,6 @@ const GameBoard = (() => {
     }
   }
 
-  // const markCell = () => {
-  // }
-
  //listener for clicking a cell
   const attachCellListeners = () => {
     for(let i = 0; i < 9; i++ ){
@@ -21,6 +18,9 @@ const GameBoard = (() => {
       });
     }
   }
+
+//   const updateBoard = () => {
+// }
 
   return {generateBoard,attachCellListeners};
 })();
@@ -46,7 +46,6 @@ const GameLogic = (() => {
 
   const markCell = (cell) => {
     console.log("Marking cell: " + cell);
-    let move = turn;
     if(turn == 0){
       player1.getMark();
       console.log("New cell value is now: " + player1.getMark());
