@@ -19,10 +19,15 @@ const GameBoard = (() => {
     }
   }
 
-//   const updateBoard = () => {
-// }
+ const markCell = (cell, mark) => {
+     board[cell] = mark;
+ }
 
-  return {generateBoard,attachCellListeners};
+ const getCell = (cell) => {
+   return board[cell];
+ }
+
+  return {generateBoard,attachCellListeners, markCell, getCell};
 })();
 
 //BEGIN Player for player information
@@ -36,7 +41,6 @@ const Player = (name,mark) => {
   return{getName,getMark};
 }
 
-
 // BEGIN GameLogic for all game rules
 const GameLogic = (() => {
   const player1 = Player("Player 1", "X");
@@ -44,36 +48,44 @@ const GameLogic = (() => {
 
   let turn = 0;
 
-  const markCell = (cell) => {
-    console.log("Marking cell: " + cell);
-    if(turn == 0){
-      player1.getMark();
-      console.log("New cell value is now: " + player1.getMark());
-      turn++;
-    }
-    else{
-      player2.getMark();
-      console.log("New cell value is now: " + player2.getMark());
-      turn--;
-    }
-  }
-
-  return{markCell};
-})();
-
-// BEGIN DisplayController for all display needs
-const DisplayController = (() => {
   const startGame = () => {
     GameBoard.generateBoard();
     GameBoard.attachCellListeners();
   }
-  return {startGame};
+
+  const markCell = (cell) => {
+    console.log("Marking cell: " + cell);
+    let mark = "";
+    if(turn == 0){
+      mark = player1.getMark();
+      turn++;
+    }
+    else{
+      mark = player2.getMark();
+      turn--;
+    }
+    GameBoard.markCell(cell,mark);
+    DisplayController.markCell(cell, mark);
+    let newCellValue = GameBoard.getCell(cell);
+    console.log("New cell value is now: " + newCellValue);
+  }
+
+  return{markCell, startGame};
+})();
+
+// BEGIN DisplayController for all display needs
+const DisplayController = (() => {
+  // Display controller needs to update value of a cell within the DOM
+  const markCell = (cell, mark) => {
+    $("#c"+cell).text(mark);
+  }
+  return {markCell};
 })();
 
 // BEGIN StartGame for starting the game
 const StartGame = (() => {
   $("#start").click(function(){
     console.log("Starting Game");
-    DisplayController.startGame();
+    GameLogic.startGame();
   });
 })();
