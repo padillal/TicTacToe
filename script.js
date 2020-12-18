@@ -72,8 +72,9 @@ const GameLogic = (() => {
     console.log("New cell value is now: " + newCellValue);
   }
   else{
-    console.log("Try another cell");
+    console.log("Please select an empty cell");
   }
+  
   }
 
   return{markCell, startGame};
