@@ -54,8 +54,10 @@ const GameLogic = (() => {
   }
 
   const markCell = (cell) => {
+    if(GameBoard.getCell(cell) != "X" && GameBoard.getCell(cell) != "O"){
     console.log("Marking cell: " + cell);
     let mark = "";
+
     if(turn == 0){
       mark = player1.getMark();
       turn++;
@@ -69,6 +71,10 @@ const GameLogic = (() => {
     let newCellValue = GameBoard.getCell(cell);
     console.log("New cell value is now: " + newCellValue);
   }
+  else{
+    console.log("Try another cell");
+  }
+  }
 
   return{markCell, startGame};
 })();
@@ -77,8 +83,8 @@ const GameLogic = (() => {
 const DisplayController = (() => {
   // Display controller needs to update value of a cell within the DOM
   const markCell = (cell, mark) => {
-    $("#c"+cell).text(mark);
-  }
+    $("#c"+cell).text(mark);}
+
   return {markCell};
 })();
 
