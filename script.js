@@ -23,11 +23,19 @@ const GameBoard = (() => {
      board[cell] = mark;
  }
 
+ const isWinner = () => {
+   console.log("isWinner " + board[0]);
+   // Check if there is a winner and returns either true or false
+   if(board[0] != "" && board[0] === board[1] && board[1] === board[2]){
+     return true;
+   }
+ }
+
  const getCell = (cell) => {
    return board[cell];
  }
 
-  return {generateBoard,attachCellListeners, markCell, getCell};
+  return {generateBoard,attachCellListeners, markCell, getCell, isWinner};
 })();
 
 //BEGIN Player for player information
@@ -68,15 +76,22 @@ const GameLogic = (() => {
     }
     GameBoard.markCell(cell,mark);
     DisplayController.markCell(cell, mark);
+    if (GameBoard.isWinner()) {
+      console.log("Announcing winner");
+      announceWinner(mark);
+    }
     let newCellValue = GameBoard.getCell(cell);
     console.log("New cell value is now: " + newCellValue);
   }
   else{
     console.log("Please select an empty cell");
   }
-  
+
   }
 
+  const announceWinner = (mark) => {
+    alert(mark + " won!");
+  }
   return{markCell, startGame};
 })();
 
