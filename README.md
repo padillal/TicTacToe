@@ -1,6 +1,6 @@
 **Tic-Tac-Toe**
 
-This is an application made utilizing Javascript to recreate the game of Tic-Tac-Toe. It is implemented with object oriented programming in mind by utilizing modules and factories for the functions to minimize the amount of global variables.
+This is an application made utilizing Javascript to recreate the game of Tic-Tac-Toe. It is implemented with object oriented programming in mind by utilizing modules and factories for the functions to minimize the amount of global variables. [The current version can be found here](https://padillal.github.io/TicTacToe/)
 
 ***--Overview--***
 
